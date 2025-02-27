@@ -1,11 +1,23 @@
-import React from 'react'
+import React, { useEffect } from 'react'
 import { NavLink } from 'react-router-dom'
 
 const Navbar = () => {
+  useEffect(() => {
+    const handleMouseMove = (event: MouseEvent) => {
+      document.documentElement.style.setProperty('--x', `${event.clientX}px`);
+      document.documentElement.style.setProperty('--y', `${event.clientY}px`);
+    };
+
+    window.addEventListener('mousemove', handleMouseMove);
+    return () => {
+      window.removeEventListener('mousemove', handleMouseMove);
+    };
+  }, []);
+
   return (
     <div>
-      <div className='flex items-center justify-between mb-5  h-16  ' >
-        <div className='flex items-center gap-10'>
+      <div className='borderNav flex items-center justify-between mb-5 h-16 border-crimson border-b-1 relative' >
+        <div className='flex items-center gap-10 pl-15'>
           <h1 className='text-2xl font-light font-gloock'>Dusk<b className='text-crimson font-bold'>Born</b></h1>
 
           <div className='flex items-center gap-5'>
@@ -28,8 +40,7 @@ const Navbar = () => {
           <NavLink to={'/about'} className='flex flex-col items-center px-5 gap-1'>
             <p>COLLECTION</p>
           </NavLink>
-          <hr className='w-[1.5px] h-2/3 bg-crimson border-none' />
-          <NavLink to={'/cart'} className='flex flex-col items-center gap-1 px-5 h-full justify-center'>
+          <NavLink to={'/cart'} className=' flex flex-col items-center gap-1 px-5 h-full justify-center border-crimson border-l-1'>
             <p>CART (0)</p>
           </NavLink>
           <NavLink to={'/login'} className='flex flex-col items-center gap-1 px-15 pr h-full justify-center bg-crimson'>
@@ -38,8 +49,6 @@ const Navbar = () => {
         </ul>
 
       </div>
-      <hr className='w-3/4 h-[1px] bg-crimson border-none m-auto' />
-
     </div>
 
   )

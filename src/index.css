@@ -12,3 +12,39 @@
     --font-gloock: 'Gloock', serif;
     --font-nm: 'Raleway', serif;
 }
+
+.borderNav {
+    --border-width: 6px;
+    --alpha: 0.15;
+    --spotlight: radial-gradient(
+        #f70000,transparent ,transparent
+    );
+    overflow: hidden;
+}
+
+.fondo {
+    z-index: -2;
+    position: relative;
+}
+
+.borderNav::before {
+    content:"";
+    position: absolute;
+    top: var(--y);
+    left: var(--x);
+    transform: translate(-50%, -50%);
+    background: var(--spotlight);
+    width: 400px;
+    height: 400px;
+    transition: 0.5s, top 0s, left 0s;
+    z-index: -1;
+}
+
+.borderNav::after {
+    --alpha: 0.5;
+    content: "";
+    position: absolute;
+    inset: 0 0 2px 0;
+    background: #0D0D0D;
+    z-index: -1;
+}
