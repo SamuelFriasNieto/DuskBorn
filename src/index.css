@@ -13,6 +13,7 @@
     --font-nm: 'Raleway', serif;
 }
 
+
 .borderNav {
     --border-width: 6px;
     --alpha: 0.15;
@@ -22,10 +23,6 @@
     overflow: hidden;
 }
 
-.fondo {
-    z-index: -2;
-    position: relative;
-}
 
 .borderNav::before {
     content:"";
@@ -37,7 +34,6 @@
     width: 400px;
     height: 400px;
     transition: 0.5s, top 0s, left 0s;
-    z-index: -1;
 }
 
 .borderNav::after {
@@ -46,5 +42,4 @@
     position: absolute;
     inset: 0 0 2px 0;
     background: #0D0D0D;
-    z-index: -1;
 }

@@ -1,4 +1,4 @@
-import React, { useEffect } from 'react'
+import React, { useEffect, useState } from 'react'
 import { NavLink } from 'react-router-dom'
 
 const Navbar = () => {
@@ -14,10 +14,12 @@ const Navbar = () => {
     };
   }, []);
 
+  const [isOpen, setIsOpen] = useState(false);
+
   return (
     <div>
-      <div className='borderNav flex items-center justify-between mb-5 h-16 border-crimson border-b-1 relative' >
-        <div className='flex items-center gap-10 pl-15'>
+      <div className='borderNav flex items-center justify-between mb-5 h-16 border-crimson border-b-1 relative ' >
+        <div className='flex items-center gap-10 pl-15 z-1'>
           <h1 className='text-2xl font-light font-gloock'>Dusk<b className='text-crimson font-bold'>Born</b></h1>
 
           <div className='flex items-center gap-5'>
@@ -29,7 +31,14 @@ const Navbar = () => {
           </div>
         </div>
 
-        <ul className='hidden sm:flex items-center text-sm h-full'>
+        <button onClick={() => setIsOpen(!isOpen)} className={`lg:hidden flex flex-col h-[48px] w-9 gap-[10.4px] 
+          justify-center mr-15 *:bg-crimson *:h-0.5 *:w-full *:rounded-sm *:transition-all *:duration-300 *:origin-left  z-1`}>
+          <div className={`${isOpen ? 'rotate-45' : ''}`}></div>
+          <div className={`${isOpen ? 'opacity-0' : ''}`}></div>
+          <div className={`${isOpen ? '-rotate-45' : ''}`}></div>
+        </button>
+
+        <ul className='items-center text-sm h-full z-1 hidden lg:flex '>
 
           <NavLink to={'/contact'} className='flex flex-col items-center px-5 gap-1'>
             <p>CONTACT</p>
@@ -47,6 +56,7 @@ const Navbar = () => {
             <p>LOGIN</p>
           </NavLink>
         </ul>
+
 
       </div>
     </div>
