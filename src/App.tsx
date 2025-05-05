@@ -10,11 +10,17 @@ import Orders from './pages/Orders'
 import Product from './pages/Product'
 import Cart from './pages/Cart'
 import Navbar from './components/Navbar'
+import Footer from './components/Footer'
+import SearchBar from './components/SearchBar'
+import {ToastContainer} from 'react-toastify'
+import 'react-toastify/dist/ReactToastify.css'
 
 const App = () => {
   return (
-    <div className='font-nm fondo bg-midnight h-screen w-screen text-broken-white'>
+    <div className='font-nm fondo bg-midnight min-h-screen overflow-hidden max-w-screen text-broken-white'>
+      <ToastContainer  />
       <Navbar/>
+      <SearchBar/>
       <Routes>
         <Route path='/' element={<Home/>} />
         <Route path='/collection' element={<Collection/>} />
@@ -26,6 +32,7 @@ const App = () => {
         <Route path='/product/:productId' element={<Product/>} />
         <Route path='/cart' element={<Cart/>} />
       </Routes>
+      <Footer/>
     </div>
   )
 }
