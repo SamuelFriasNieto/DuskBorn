@@ -84,7 +84,26 @@ const registerUser = async (req, res) => {
 }
 
 const adminLogin = async (req, res) => {
-
+    try {
+        const { email, password } = req.body;
+        const user = await userModel.findOne({ email });
+        if (!user) {
+            return res.status(400).json({ message: "The email does not exist" });
+        }
+        if(email === process.env.ADMIN_EMAIL && password === process.env.ADMIN_PASSWORD) {
+            const token = jwt.sign(email+password, process.env.JWT_SECRET);
+            res.status(200).json({
+                _id: user._id,
+                name: user.name,
+                email: user.email,
+                token,
+            });
+        } else {
+            return res.status(400).json({ message: "Invalid email or password" });
+        }
+    } catch (error) {
+        res.status(500).json({ message: error.message });
+    }
 }
 
 export { loginUser, registerUser, adminLogin };
