@@ -39,6 +39,48 @@ const loginUser = async (req, res) => {
 
 }
 
+const getUser = async (req, res) => {
+    try {
+
+        const user = await userModel.findById(req.body.userId);
+        if (!user) {
+            return res.status(400).json({ message: "User not found" });
+        }
+        res.status(200).json({
+            _id: user._id,
+            name: user.name,
+            email: user.email,
+        })
+    } catch (error) {
+        res.status(500).json({ message: error.message });
+    }
+}
+
+const updateUser = async (req, res) => {
+    try {
+        const { name, email, password } = req.body;
+        const user = await userModel.findById(req.body.userId);
+        if (!user) {
+            return res.status(400).json({ message: "User not found" });
+        }
+        if (name) {
+            user.name = name;
+        }
+        if (email) {
+            user.email = email;
+        }
+        if (password) {
+            const salt = await bycrypt.genSalt(10);
+            const hashedPassword = await bycrypt.hash(password, salt);
+            user.password = hashedPassword;
+        }
+        await user.save();
+        res.status(200).json({ message: "User updated successfully" });
+    } catch (error) {
+        res.status(500).json({ message: error.message });
+    }
+}
+
 const registerUser = async (req, res) => {
 
     try {
@@ -106,4 +148,4 @@ const adminLogin = async (req, res) => {
     }
 }
 
-export { loginUser, registerUser, adminLogin };
+export { loginUser, registerUser, adminLogin, updateUser, getUser };

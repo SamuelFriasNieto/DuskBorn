@@ -14,6 +14,8 @@ import Footer from './components/Footer'
 import SearchBar from './components/SearchBar'
 import {ToastContainer} from 'react-toastify'
 import 'react-toastify/dist/ReactToastify.css'
+import Verify from './pages/Verify'
+import Profile from './pages/Profile'
 
 const App = () => {
   return (
@@ -31,6 +33,8 @@ const App = () => {
         <Route path='/orders' element={<Orders/>} />
         <Route path='/product/:productId' element={<Product/>} />
         <Route path='/cart' element={<Cart/>} />
+        <Route path='/verify' element={<Verify/>} />
+        <Route path='/profile' element={<Profile/>} />
       </Routes>
       <Footer/>
     </div>
