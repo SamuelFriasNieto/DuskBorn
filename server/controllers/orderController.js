@@ -89,7 +89,7 @@ const verifyStripe = async (req, res) => {
     const {orderId, success, userId} = req.body
 
     try {
-        if(success) {
+        if(success === 'true') {
             await orderModel.findByIdAndUpdate(orderId, {payment: true})
             await userModel.findByIdAndUpdate(userId, {cartData: {}})
             res.status(200).json({message: "Payment successful"})
