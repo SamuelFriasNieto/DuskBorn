@@ -26,7 +26,7 @@ const Verify = () => {
                 }
             })
 
-            if (response.status === 200 && success) {
+            if (response.status === 200 && success === 'true') {
                 setCartItems({})
                 navigate('/orders')
             } else {
