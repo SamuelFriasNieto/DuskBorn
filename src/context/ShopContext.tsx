@@ -1,5 +1,5 @@
 import { createContext, use, useEffect, useState } from "react";
-import { products } from "../assets/assets.js"
+import { products } from "../../public/assets/assets.js"
 import { Product } from "../types/products.js";
 import { set } from "react-hook-form";
 import { toast } from "react-toastify";

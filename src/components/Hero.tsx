@@ -32,8 +32,8 @@ const Hero = () => {
         {/* Right side */}
         <Carousel className='flex-1' plugins={[plugin.current]}>
             <CarouselContent>
-                <CarouselItem ><img className='w-full  bg-cover'  src="/src/assets/hero-image.png" alt="" /></CarouselItem>
-                <CarouselItem ><img className='w-full  bg-cover'  src="/src/assets/hero-image2.png" alt="" /></CarouselItem>
+                <CarouselItem ><img className='w-full  bg-cover'  src="/assets/hero-image.png" alt="" /></CarouselItem>
+                <CarouselItem ><img className='w-full  bg-cover'  src="/assets/hero-image2.png" alt="" /></CarouselItem>
             </CarouselContent>
         </Carousel>
 
