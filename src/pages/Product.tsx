@@ -29,6 +29,10 @@ const Product = () => {
     fetchProductData()
   },[productId, products])
 
+  useEffect(() => {
+    window.scrollTo(0, 0)
+  },[productId])
+
   return productData ? (
     <div className=' transition-opacity ease-in duration-500 opacity-100'>
      <div className='md:grid md:grid-cols-2'>

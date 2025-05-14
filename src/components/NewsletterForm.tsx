@@ -13,6 +13,7 @@ import {
 } from "./ui/form";
 import { Button } from "./ui/button";
 import { Input } from "./ui/input";
+import { toast } from "react-toastify";
 
 const newsletterFormSchema = z.object({
   email: z.string().email({
@@ -33,6 +34,7 @@ const NewsletterForm = () => {
   function onSubmit(values: NewsletterForm) {
     // Do something with the form values.
     // ✅ This will be type-safe and validated.
+    toast.success("Subscribed successfully");
     console.log(values);
   }
 
