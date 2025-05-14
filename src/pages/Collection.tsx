@@ -24,6 +24,7 @@ const Collection = () => {
   const [category, setCategory] = useState<string[]>([])
   const [subCategory, setSubCategory] = useState<string[]>([])
   const [sortType, setSortType] = useState<string>('Relevant')
+  console.log(products)
 
   const toggleCategory = (value: string) => {
     if (category.includes(value)) {
@@ -109,16 +110,16 @@ const Collection = () => {
           <p className='mb-3 text-sm font-medium text-crimson-bright'>TYPE</p>
           <div className='flex flex-col gap-2 text-sm font-light text-broken-white'>
             <p className='flex gap-2 items-center'>
-              <Checkbox className='border-crimson-bright data-[state=checked]:bg-crimson-dark data-[state=checked]:border-crimson-dark' id="Topwear" value={'Topwear'} onCheckedChange={(checked) => toggleSubCategory('Topwear')}/> 
-              <label htmlFor="Topwear">Top</label>
+              <Checkbox className='border-crimson-bright data-[state=checked]:bg-crimson-dark data-[state=checked]:border-crimson-dark' id="Topwear" value={'Top'} onCheckedChange={(checked) => toggleSubCategory('Top')}/> 
+              <label htmlFor="Top">Top</label>
             </p>
             <p className='flex gap-2 items-center'>
-              <Checkbox className='border-crimson-bright data-[state=checked]:bg-crimson-dark data-[state=checked]:border-crimson-dark' id="Bottomwear" value={'Bottomwear'} onCheckedChange={(checked) => toggleSubCategory('Bottomwear')}/>
-              <label htmlFor="Bottomwear">Bottom</label>
+              <Checkbox className='border-crimson-bright data-[state=checked]:bg-crimson-dark data-[state=checked]:border-crimson-dark' id="Bottomwear" value={'Bottom'} onCheckedChange={(checked) => toggleSubCategory('Bottom')}/>
+              <label htmlFor="Bottom">Bottom</label>
             </p>
             <p className='flex gap-2 items-center'>
-              <Checkbox className='border-crimson-bright data-[state=checked]:bg-crimson-dark data-[state=checked]:border-crimson-dark' id="Winterwear" value={'Winterwear'} onCheckedChange={(checked) => toggleSubCategory('Winterwear')}/>
-              <label htmlFor="Winterwear">Winter</label>
+              <Checkbox className='border-crimson-bright data-[state=checked]:bg-crimson-dark data-[state=checked]:border-crimson-dark' id="Winterwear" value={'Winter'} onCheckedChange={(checked) => toggleSubCategory('Winter')}/>
+              <label htmlFor="Winter">Winter</label>
             </p>
           </div>
         </div>
