@@ -2,7 +2,8 @@ import CartTotal from '@/components/CartTotal'
 import Title from '@/components/Title'
 import {ShopContext} from '@/context/ShopContext';
 import axios from 'axios';
-import React, { use, useContext, useState } from 'react'
+import { get } from 'http';
+import React, { use, useContext, useEffect, useState } from 'react'
 import { FaStripe } from "react-icons/fa";
 import { toast } from 'react-toastify';
 import { date } from 'zod';
@@ -32,6 +33,36 @@ const PlaceOrder = () => {
       ...prev,
       [name]: value
     }))
+  }
+
+  const getUserData = async () => {
+    try {
+      const response = await axios.post(backendUrl + '/api/user/get', {}, {
+        headers: {
+          token
+        }
+      })
+      console.log(response.data);
+      if (response.status === 200) {
+        setFormData({
+          firstName: response.data.name,
+          lastName: response.data.name,
+          email: response.data.email,
+          street: "",
+          city: "",
+          state: "",
+          zipcode: "",
+          country: "",
+          phone: ""
+        })
+      } else {
+        console.error("Error fetching user data:", response.data.message);
+        toast.error("Error fetching user data")
+      }
+    } catch (error) {
+      console.error("Error fetching user data:", error);
+      toast.error("Error fetching user data")
+    }
   }
 
   const onSubmitHandler = async (e: React.FormEvent<HTMLFormElement>) => {
@@ -110,6 +141,10 @@ const PlaceOrder = () => {
       toast.error("Error placing order")
     }
   }
+
+  useEffect(() => {
+    getUserData()
+  },[token])
 
 
   return (
