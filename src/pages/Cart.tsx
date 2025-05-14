@@ -27,7 +27,7 @@ const Cart = () => {
       }
       setCartData(tempData);
     }
-  }, [cartItems]);
+  }, [cartItems,products]);
 
   return (
     <div className="pt-14 mx-15">
@@ -58,7 +58,7 @@ const Cart = () => {
                       {currency}
                       {product?.price}
                     </p>
-                    <p className="px-2 sm:px-3 sm:py-1 border border-crimson ">
+                    <p className="px-2 sm:px-3 sm:py-1 sm:border border-crimson ">
                       {item.size}
                     </p>
                   </div>

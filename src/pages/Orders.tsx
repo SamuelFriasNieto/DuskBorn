@@ -52,7 +52,7 @@ const Orders = () => {
   },[token])
 
   return (
-    <div className='pt-16 mx-15'>
+    <div className='pt-16 mx-10 sm:mx-15'>
       <div className='text-2xl'>
         <Title text1={'MY'} text2={'ORDERS'}/>
       </div>

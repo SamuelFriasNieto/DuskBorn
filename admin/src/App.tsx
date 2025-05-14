@@ -23,14 +23,14 @@ const App = () => {
 
 
   return (
-    <div className='font-nm fondo bg-midnight min-h-screen overflow-hidden max-w-screen text-broken-white '>
+    <div className='font-sm bg-midnight min-h-screen  max-w-screen text-broken-white '>
       <ToastContainer />
       { token === ''
       ? <Login setToken={setToken}/>
       :
       <>
         <Navbar setToken={setToken} />
-        <div className='flex w-full'>
+        <div className='relative flex w-full h-full'>
           <Sidebar/>
           <div className='w-[70%] mx-auto ml-[max(5vw,25px)] my-8 text-broken-white text-base'>
             <Routes>

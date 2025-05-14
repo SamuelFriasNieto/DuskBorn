@@ -31,14 +31,14 @@ const Product = () => {
 
   return productData ? (
     <div className=' transition-opacity ease-in duration-500 opacity-100'>
-     <div className='grid grid-cols-2 md:grid-cols-2'>
+     <div className='md:grid md:grid-cols-2'>
       <div className='border border-crimson border-t-0 '>
 
         <Carousel className=''>
             <CarouselContent>
               {
                 productData.image.map((item, index) => (   
-                  <CarouselItem key={index} ><img className='w-full  bg-cover cursor-pointer' onClick={() => setImage(item)}  src={item} alt="" /></CarouselItem>
+                  <CarouselItem key={index} ><img className='w-full h-full object-cover cursor-pointer' onClick={() => setImage(item)}  src={item} alt="" /></CarouselItem>
                 ))
               }
             </CarouselContent>
@@ -47,7 +47,7 @@ const Product = () => {
         </Carousel>
       </div>
         
-      <div className='py-20 px-40 flex flex-col  justify-center border-b border-crimson'>
+      <div className='py-20 px-10 md:px-40 flex flex-col  justify-center border-b border-crimson'>
         <h1 className='font-medium text-2xl'>{productData.name}</h1>
         <p className='mt-3 text-xl'>{currency}{productData.price}</p>
         <p className='mt-9 md:w-4/5'>{productData.description}</p>
@@ -71,11 +71,9 @@ const Product = () => {
      <div className='mt-20 mx-15 col-span-full'>
         <div className='flex'>
             <b className='border border-b-0 border-crimson px-5 py-3 text-sm'>Description</b>
-            <p className='border border-l-0 border-b-0 border-crimson px-5 py-3 text-sm '>Reviews (122)</p>
         </div>
         <div className='flex flex-col gap-4 border border-crimson-bright px-6 py-6 text-sm text-broken-white '>
-            <p>Lorem ipsum dolor, sit amet consectetur adipisicing elit. Adipisci ab id porro in, nemo sit voluptas accusamus ullam illo quae quia non, quo culpa labore voluptatem. Reiciendis quia amet quisquam?Lorem ipsum dolor, sit amet consectetur adipisicing elit. Adipisci ab id porro in, nemo sit voluptas accusamus ullam illo quae quia non, quo culpa labore voluptatem. Reiciendis quia amet quisquam?Lorem ipsum dolor, sit amet consectetur adipisicing elit. Adipisci ab id porro in, nemo sit voluptas accusamus ullam illo quae quia non, quo culpa labore voluptatem. Reiciendis quia amet quisquam?Lorem ipsum dolor, sit amet consectetur adipisicing elit. Adipisci ab id porro in, nemo sit voluptas accusamus ullam illo quae quia non, quo culpa labore voluptatem. Reiciendis quia amet quisquam?</p>
-            <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Aliquam quas tenetur totam, consequatur aperiam nostrum expedita qui culpa ullam voluptatibus optio. Architecto praesentium reprehenderit natus. Laboriosam consequuntur repudiandae nihil veniam.</p>
+            {productData.description}
         </div>
      </div>
 

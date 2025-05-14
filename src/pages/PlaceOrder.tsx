@@ -136,7 +136,7 @@ const PlaceOrder = () => {
       </div>
 
       <div className='mt-8'>
-        <div className='mt-8 min-w-80'>
+        <div className='mt-8 '>
           <CartTotal />
         </div>
 
@@ -149,13 +149,13 @@ const PlaceOrder = () => {
             </div>
             <div onClick={() => setMethod('cod')} className='flex items-center gap-3 border border-crimson px-5 cursor-pointer'>
               <p className={`min-w-3.5 h-3.5 border border-crimson rounded-full ${method === 'cod' ? 'bg-crimson':''}`}></p>
-              <p className='text-crimson text-sm font-medium mx-4'>CASH ON DELIVERY</p>
+              <p className='text-crimson text-sm font-medium mx-4 my-2'>CASH ON DELIVERY</p>
             </div>
           </div>
         </div>
 
         <div className='w-full text-end mt-5'>
-          <button type='submit' className='bg-crimson text-black border border-crimson px-15 py-3 hover:bg-midnight hover:text-broken-white transition-all cursor-pointer'>PLACE ORDER</button>
+          <button type='submit' className='w-full bg-crimson text-black border border-crimson px-15 py-3 hover:bg-midnight hover:text-broken-white transition-all cursor-pointer'>PLACE ORDER</button>
         </div>
       </div>
     </form>

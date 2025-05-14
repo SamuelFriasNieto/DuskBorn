@@ -14,7 +14,7 @@ const Profile = () => {
 
     const getUserData = async () => {
         if (!token) {
-            return null
+            navigate('/login')
         }
         const response = await axios.post(backendUrl + '/api/user/get', {}, {
             headers: {

@@ -86,7 +86,7 @@ const Collection = () => {
     <div className='flex flex-col sm:flex-row gap-1 sm:gap-10 pt-10 '>
 
       {/*Filter Options*/}
-      <div className='min-w-60 mx-15'>
+      <div className='min-w-60 mx-10 sm:mx-15'>
         <p onClick={() => setShowFilter(!showFilter)} className='my-2 text-xl flex items-center cursor-pointer gap-2'>FILTERS
           <IoIosArrowDropdownCircle className={`text-crimson-bright sm:hidden ${showFilter ? 'rotate-180' : ''} duration-300 `}/>
         </p>
@@ -127,7 +127,7 @@ const Collection = () => {
 
       <div className='flex-1'>
 
-        <div className='flex justify-between text-base sm:text-2xl mb-4 mr-15'>
+        <div className='flex justify-between text-base sm:text-2xl gap-3 mb-4 mx-10 sm:mr-15 sm:ml-0'>
           <Title text1={'ALL'} text2={'COLLECTIONS'}/>
 
           <Select onValueChange={(value) => setSortType(value)} >
@@ -144,7 +144,7 @@ const Collection = () => {
           </Select>
         </div>
 
-        <div className='grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-4 gap-y-6 mr-15'>
+        <div className='grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-4 gap-y-6 mx-10 sm:mr-15 sm:ml-0'>
           {
             filterProducts.map((item, index)=> (
               <ProductItem key={index} name={item.name} id={item._id} image={item.image} price={item.price} />

@@ -86,6 +86,9 @@ const Navbar = () => {
           <div className='flex flex-col text-broken-white'>
             <NavLink onClick={() => setIsOpen(false)} className='py-[1.2rem] pl-6 border-b bg-crimson hover:text-ashen-grey border-crimson' to={'/'}>HOME</NavLink>
             <NavLink onClick={() => setIsOpen(false)} className='py-2 pl-6 border-b border-crimson hover:text-crimson-bright' to={'/collection'}>COLLECTION</NavLink>
+            <NavLink onClick={() => setIsOpen(false)} className='py-2 pl-6 border-b border-crimson hover:text-crimson-bright' to={'/cart'}>CART</NavLink>
+            <NavLink onClick={() => setIsOpen(false)} className='py-2 pl-6 border-b border-crimson hover:text-crimson-bright' to={'/orders'}>ORDERS</NavLink>
+            <NavLink onClick={() => setIsOpen(false)} className='py-2 pl-6 border-b border-crimson hover:text-crimson-bright' to={'/profile'}>PROFILE</NavLink>
             <NavLink onClick={() => setIsOpen(false)} className='py-2 pl-6 border-b border-crimson hover:text-crimson-bright' to={'/login'}>LOGIN</NavLink>
           </div>
         </div>

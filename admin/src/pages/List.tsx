@@ -65,7 +65,7 @@ const List = ({token}:ListProps) => {
               className="grid grid-cols-[1fr_3fr_1fr_1fr_1fr] items-center py-1 px-2 border-b border-crimson text-sm"
             >
               <img
-                className="w-20 h-20 object-cover"
+                className="w-20 pr-2 sm:pr-0 h-20 object-cover "
                 src={item.image[0]}
                 alt={item.name}
               />
