@@ -4,11 +4,17 @@ import { ShopContext } from "@/context/ShopContext";
 import React, { useContext, useEffect, useState } from "react";
 import { RiDeleteBinLine } from "react-icons/ri";
 
+type CartData = {
+  id: string;
+  size: string;
+  quantity: number;
+}
+
 const Cart = () => {
   const { cartItems, products, currency, updateQuantity, navigate } =
     useContext(ShopContext);
 
-  const [cartData, setCartData] = useState<any[]>([]);
+  const [cartData, setCartData] = useState<CartData[]>([]);
 
   useEffect(() => {
     if (products.length > 0) {
@@ -22,10 +28,29 @@ const Cart = () => {
               size: size,
               quantity: cartItems[items][size],
             });
-          }
+          } 
         }
       }
       setCartData(tempData);
+      if (cartData.length === 0) {
+        const localCart = localStorage.getItem("cart");
+        if (localCart) {
+          const parsedCart = JSON.parse(localCart);
+          const newCartData = [];
+          for (const items in parsedCart) {
+            for (const size in parsedCart[items]) {
+              if (parsedCart[items][size] > 0) {
+                newCartData.push({
+                  id: items,
+                  size: size,
+                  quantity: parsedCart[items][size],
+                });
+              }
+            }
+          }
+          setCartData(newCartData);
+        }
+      }
     }
   }, [cartItems, products]);
 
