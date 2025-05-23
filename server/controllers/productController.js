@@ -3,7 +3,7 @@ import productModel from '../models/productModel.js';
 
 const addProduct = async (req, res) => {
     try {
-        const { name, price, description, category, subCategory, sizes, image, bestseller } = req.body;
+        const { name, price, description, category, subCategory, sizes, image, bestseller, stock } = req.body;
 
         const image1 = req.files.image1 && req.files.image1[0];
         const image2 = req.files.image2 && req.files.image2[0];
@@ -30,6 +30,7 @@ const addProduct = async (req, res) => {
             sizes:JSON.parse(sizes),
             bestseller: bestseller === 'true' ? true : false, 
             image: imageUrl,
+            stock: JSON.parse(stock),
             date: Date.now()
         });
 
@@ -73,4 +74,21 @@ const singleProduct = async (req,res) => {
     }
 }
 
-export { addProduct, listProducts, removeProduct, singleProduct };
+const updateStock = async (req, res) => {
+    try {
+        const { productId, stock } = req.body;
+        const product = await productModel.findByIdAndUpdate(
+            productId,
+            { stock },
+            { new: true }
+        );
+        if (!product) {
+            return res.status(404).json({ message: "Product not found" });
+        }
+        res.status(200).json({ message: "Stock updated", product });
+    } catch (error) {
+        res.status(500).json({ message: error.message });
+    }
+};
+
+export { addProduct, listProducts, removeProduct, singleProduct, updateStock };

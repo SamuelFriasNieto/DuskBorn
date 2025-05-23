@@ -27,7 +27,7 @@ const Cart = () => {
       }
       setCartData(tempData);
     }
-  }, [cartItems,products]);
+  }, [cartItems, products]);
 
   return (
     <div className="pt-14 mx-15">
@@ -93,8 +93,11 @@ const Cart = () => {
 
           <div className="w-full text-end">
             <button
+              disabled={cartData.length === 0 ? true : false}
               onClick={() => navigate("/place-order")}
-              className="bg-crimson-bright text-black hover:bg-midnight border border-crimson-bright transition-all duration-300 hover:text-broken-white py-2 px-4 cursor-pointer"
+              className={`bg-crimson-bright text-black hover:bg-midnight border border-crimson-bright transition-all duration-300 hover:text-broken-white py-2 px-4 cursor-pointer ${
+                cartData.length === 0 ? "opacity-50 cursor-not-allowed" : ""
+              }`}
             >
               PROCEED TO CHECKOUT
             </button>

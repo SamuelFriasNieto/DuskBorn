@@ -46,22 +46,20 @@ const PlaceOrder = () => {
       if (response.status === 200) {
         setFormData({
           firstName: response.data.name,
-          lastName: response.data.name,
+          lastName: response.data.address.lastName,
           email: response.data.email,
-          street: "",
-          city: "",
-          state: "",
-          zipcode: "",
-          country: "",
-          phone: ""
+          street: response.data.address.street,
+          city: response.data.address.city,
+          state: response.data.address.state,
+          zipcode: response.data.address.zipcode,
+          country: response.data.address.country,
+          phone: response.data.address.phone
         })
       } else {
         console.error("Error fetching user data:", response.data.message);
-        toast.error("Error fetching user data")
       }
     } catch (error) {
       console.error("Error fetching user data:", error);
-      toast.error("Error fetching user data")
     }
   }
 
@@ -136,13 +134,16 @@ const PlaceOrder = () => {
         default:
           break;
       }
-    } catch (error) {
+    } catch (error: any) {
       console.error("Error placing order:", error);
-      toast.error("Error placing order")
+      toast.error(error.response.data.message)
     }
   }
 
   useEffect(() => {
+    if (Object.keys(cartItems).length === 0) {
+      navigate('/cart')
+    }
     getUserData()
   },[token])
 

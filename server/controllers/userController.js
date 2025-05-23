@@ -3,6 +3,7 @@ import bycrypt from "bcrypt";
 import validator from "validator";
 import jwt from "jsonwebtoken";
 import nodeMailer from "nodemailer";
+import orderModel from "../models/orderModel.js";
 const createToken = (id) => {
     return jwt.sign({ id }, process.env.JWT_SECRET);
 }
@@ -46,10 +47,13 @@ const getUser = async (req, res) => {
         if (!user) {
             return res.status(400).json({ message: "User not found" });
         }
+        const lastOrder = await orderModel.find({ userId: req.body.userId }).sort({ date: -1 }).limit(1);
+        const address = lastOrder[0]?.address || "";
         res.status(200).json({
             _id: user._id,
             name: user.name,
             email: user.email,
+            address: address|| "",
         })
     } catch (error) {
         res.status(500).json({ message: error.message });

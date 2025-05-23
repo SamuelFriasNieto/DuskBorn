@@ -21,6 +21,7 @@ const Add = ({token}:AddProps) => {
   const [price, setprice] = useState<string>('');
   const [sizes, setsizes] = useState<string[]>([]);
   const [bestseller, setbestseller] = useState<boolean>(false);
+  const [stock,setStock] = useState<{[size:string]:number}>({});
 
   const onSubmit = async (e:React.FormEvent<HTMLFormElement>) => {
     e.preventDefault()
@@ -37,6 +38,7 @@ const Add = ({token}:AddProps) => {
       formData.append("price", price);
       formData.append("sizes", JSON.stringify(sizes));
       formData.append("bestseller", bestseller.toString());
+      formData.append("stock", JSON.stringify(stock));
 
       const response = await axios.post(backendUrl + '/api/product/add', formData, {
         headers: {token}
@@ -133,6 +135,23 @@ const Add = ({token}:AddProps) => {
             <p className='px-3 py-1 cursor-pointer border border-crimson'>XXL</p>
           </div>
         </div>
+      </div>
+
+      <div className="mt-4">
+        <p className='mb-2'>Stock por talla</p>
+        {sizes.map(size => (
+          <div key={size} className="flex items-center gap-2 mb-2">
+            <label className="w-10">{size}:</label>
+            <input
+              type="number"
+              min={0}
+              value={stock[size] || ''}
+              onChange={e => setStock(prev => ({...prev, [size]: Number(e.target.value)}))}
+              className="border border-crimson px-2 py-1 w-24"
+              required
+            />
+          </div>
+        ))}
       </div>
 
       <div className='flex gap-2 mt-2'>

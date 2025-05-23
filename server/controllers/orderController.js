@@ -1,5 +1,6 @@
 import userModel from "../models/userModel.js"
 import orderModel from "../models/orderModel.js"
+import productModel from "../models/productModel.js"
 import Stripe from 'stripe'
 
 const stripe = new Stripe(process.env.STRIPE_SECRET_KEY)
@@ -9,8 +10,20 @@ const deliveryCharge = 10
 
 const placeOrder = async (req, res) => {
     try {
-        
         const {userId, items, amount, address} = req.body
+        for(const item of items) {
+            const product = await productModel.findById(item.id)
+            if(product.stock[item.size] < item.quantity) {
+                return res.status(400).json({message: `${product.name} is out of stock. Remaining stock is ${product.stock[item.size]}`})
+            }
+        }
+        for(const item of items) {
+            await productModel.findByIdAndUpdate(item.id, {
+                $inc: {
+                    [`stock.${item.size}`]: -item.quantity
+                }
+            })
+        }
         const orderData = {
             userId,
             items,
